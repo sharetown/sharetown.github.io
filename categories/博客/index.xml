@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on SharetownBlog</title>
+    <link>https://github.com/sharetown/sharetown.github.io/categories/%E5%8D%9A%E5%AE%A2/</link>
+    <description>Recent content in 博客 on SharetownBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 25 Oct 2022 21:25:00 +0800</lastBuildDate><atom:link href="https://github.com/sharetown/sharetown.github.io/categories/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何使用Hugo引用Blowfish主题创建一个唯美的博客</title>
+      <link>https://github.com/sharetown/sharetown.github.io/posts/hi/</link>
+      <pubDate>Tue, 25 Oct 2022 21:25:00 +0800</pubDate>
+      
+      <guid>https://github.com/sharetown/sharetown.github.io/posts/hi/</guid>
+      <description>Hugo是Go编写的静态网站生成器，速度快,易用，可配置。Hugo 有一个内容和模板目录，把他们渲染到完全的HTML网站。Hugo非常适合博客，文档等等网站的生成。Hugo依赖于Markdown文件，元数据字体。用户可以从任意的目录中运行 Hugo，支持共享主机和其他系统。
+一、安装Hugo（windows） # Github下载Hugo的发行版 https://github.com/gohugoio/hugo/releases 本人推荐下载extended版的 将下载好的zip文件解压到你想存放的hugo的安装目录。解压后的文件夹中有三个文件，其中有一个是exe可执行文件。不要执行它，这不是安装程序。把它的路径配置到环境变量中 配置好环境变量后到命令行窗口输入hugo version查看是否安装成功 现在你可以通过hugo new site YourBlogProjectName命令来创建一个新的站点了 创建好站点后在当前界面执行cd命令进入到你的站点文件夹下，然后执行hugo server命令就可以开启这个站点了。此时访问http://localhost:1313/ 就是你站点的地址，由于是一个全新的站点此时访问是没有任何东西的。 至此，你的hugo以及站点就安装配置完成，下一步就是为你的站点选一个好看的主题，如果你对Blowfish这个主题感兴趣那就继续往下看吧 二、安装Blowfish # 主题地址： https://themes.gohugo.io/themes/blowfish/ Blowfish的作者提供了三种使用该主题的方式，但是我本人比较喜欢作者提供的Hugo Module的方式，以下对该方式展开讲解。
+作者提供的安装文档查看：https://nunocoracao.github.io/blowfish/docs/installation/#install-using-hugo
+1、模块初始化。上面我们已经创建了一个hugo项目myBlog，现在我们要基于它做一个初始化。以下步骤建议到VS Code中进行。在VS Code中导入myBlog项目后执行hugo mod init myBlog。此时你会看到左边资源管理器会多出来一个go.</description>
+    </item>
+    
+  </channel>
+</rss>

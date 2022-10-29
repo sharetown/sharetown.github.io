@@ -1,0 +1,1660 @@
+
+
+<!DOCTYPE html>
+<html
+  lang="zh-cn"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="light"
+  data-auto-appearance="true"
+><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>线性回归及非线性回归 &middot; SharetownBlog</title>
+  <meta name="title" content="线性回归及非线性回归 &middot; SharetownBlog" />
+  
+  <meta name="description" content="用笔尖丈量地球的Hugo站点blowfish主题博客" />
+  
+  
+  
+  <link rel="canonical" href="https://github.com/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/sharetown/sharetown.github.io/css/main.bundle.min.65d4d9ef864b7ac7f0c952f1b8c52daa77e75f5d0fed127580125ce7cfe2621622559e23ccfe924aa40156d6f998163ed70e378c272bf21a9cd894ed3141c865.css"
+    integrity="sha512-ZdTZ74ZLesfwyVLxuMUtqnfnX10P7RJ1gBJc58/iYhYiVZ4jzP6SSqQBVtb5mBY&#43;1w43jCcr8hqc2JTtMUHIZQ==" />
+  
+  
+  <script type="text/javascript" src="/sharetown/sharetown.github.io/js/main.min.cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e.js" integrity="sha512-z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP&#43;DGNKHfuwvY7kxvUdBeoGlODJ6&#43;SfaPg=="></script>
+  
+  
+  <script type="text/javascript" src="/sharetown/sharetown.github.io/js/appearance.min.f94f4c4636d9e3ec8f5ee53cdc8ffa3d01bf87cd92ac85e6797550b1e2b80dc9118d838f3eb24c55109352455e72ff082dfe560283154e5a8f87fd75107b59c4.js"
+    integrity="sha512-&#43;U9MRjbZ4&#43;yPXuU83I/6PQG/h82SrIXmeXVQseK4DckRjYOPPrJMVRCTUkVecv8ILf5WAoMVTlqPh/11EHtZxA=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/sharetown/sharetown.github.io/js/main.bundle.min.3ddcf04f5b0d4c32f72e726d3c12eebccd8c3c9f9daa9a13414808895de0ae1e1cdddda6849680d5bd96dbb60d0b1e0b24c29f5c83e5631e55e7e6bc02015490.js"
+    integrity="sha512-PdzwT1sNTDL3LnJtPBLuvM2MPJ&#43;dqpoTQUgIiV3grh4c3d2mhJaA1b2W27YNCx4LJMKfXIPlYx5V5&#43;a8AgFUkA==" data-copy="" data-copied=""></script>
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  <link rel="icon" type="image/jpg" href="./favicon_hp.jpg" sizes="16x16">
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="线性回归及非线性回归" />
+<meta property="og:description" content="但是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" /><meta property="og:image" content="https://github.com/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/featured.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-26T22:14:25+08:00" />
+<meta property="article:modified_time" content="2022-10-26T22:14:25+08:00" /><meta property="og:site_name" content="SharetownBlog" />
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://github.com/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/featured.jpg"/>
+<meta name="twitter:title" content="线性回归及非线性回归"/>
+<meta name="twitter:description" content="但是"/>
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "线性回归及非线性回归",
+    "headline": "线性回归及非线性回归",
+    "description": "但是",
+    "abstract": "线性还是非线性是要根据分析的目标来决定的，在线性回归和非线性回归中，我们需要求解的是模型参数，因而，线性与非线性描述的是函数模型与模型参数之间的关系，而非因变量与自变量之间的关系\n代价函数（损失函数）（Cost function） # 最小二乘法 真实值$y$,预测值$h_\\theta$,则误差平方为$(y-h_\\theta(x))^2$. 找到合适的参数，使得误差平方和： $$ 对于线性的： h_\\theta(x)=\\theta_0\u002b\\theta_1x J(\\theta_0,\\theta_1)=\\dfrac{1}{2m}\\textstyle\\sum_{i=1}^m(y^i-h_\\theta(x^j))^2 $$ 最小\n我们使用相关系数去衡量线性相关的强弱： $$ r_{xy}=\\dfrac{\\sum(X_i-\\overline{X})(Y_i-\\overline{Y})}{\\sqrt{\\sum(X_i-\\overline{X})^2\\sum(Y_i-\\overline{Y})^2}} $$ 其中$X_i$表示真实值的横坐标；$Y_i$表示真实值纵横坐标；$\\overline{X}$表示真实值的横坐标的平均值；$\\overline{Y}$表示真实值的纵坐标的平均值。 相关系数$R^2$是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。 总平方和（SST）：$\\textstyle\\sum_{i=1}^n(y_i-\\overline{y})^2$ 回归平方和（SSR）：$\\textstyle\\sum_{i=1}^n(\\hat{y}-\\overline{y})^2$ 残差平方和（SSE）：$\\textstyle\\sum_{i=1}^n(y_i-\\hat{y})^2$ 它们三者的关系是：$SST=SSR\u002bSSE$ 决定系数：$R^2=\\dfrac{SSR}{SST}=1-\\dfrac{SSE}{SST}$ 一、梯度下降 # 需要做一个迭代： $$ \\theta_j:=\\theta_j-\\alpha\\dfrac{\\partial}{\\partial\\theta_j}J(\\theta_0,\\theta_1),j=0,1 $$ 其中$\\alpha$为学习率;$:=$为赋值符，将右边赋值给左边",
+    "inLanguage": "zh-cn",
+    "url" : "https:\/\/github.com\/sharetown\/sharetown.github.io\/posts\/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92\/",
+    "author" : {
+      "@type": "Person",
+      "name": "用笔尖丈量地球"
+    },
+    "copyrightYear": "2022",
+    "dateCreated": "2022-10-26T22:14:25\u002b08:00",
+    "datePublished": "2022-10-26T22:14:25\u002b08:00",
+    
+    "dateModified": "2022-10-26T22:14:25\u002b08:00",
+    
+    "keywords": ["机器学习","线性回归","非线性回归"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1148"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="用笔尖丈量地球" />
+  
+  
+  
+
+
+
+
+
+  
+  
+  <link
+    type="text/css" rel="stylesheet"
+    href="/sharetown/sharetown.github.io/lib/katex/katex.min.ccc75f9acd3c505d20bc9dcd0ec6835ed9a0f6963443112cd7ecbcc79946609d478606f102a9460d122c1e78c894e9b77588b97828e9f7a304f4b9605c17eb8e.css"
+    integrity="sha512-zMdfms08UF0gvJ3NDsaDXtmg9pY0QxEs1&#43;y8x5lGYJ1HhgbxAqlGDRIsHnjIlOm3dYi5eCjp96ME9LlgXBfrjg=="
+  />
+  
+  
+  <script defer src="/sharetown/sharetown.github.io/lib/katex/katex.min.08b8b724af78bfa4d472881b5afe164f8c677e9e81f00113e0fb818c6c57a3931927dc5f3603078176971fc4097ba27037e906c6a478fffcfcff6058567c5157.js" integrity="sha512-CLi3JK94v6TUcogbWv4WT4xnfp6B8AET4PuBjGxXo5MZJ9xfNgMHgXaXH8QJe6JwN&#43;kGxqR4//z8/2BYVnxRVw=="></script>
+  
+  
+  <script defer src="/sharetown/sharetown.github.io/lib/katex/auto-render.min.8968ae052e67b7aafad1f0b3dba35dd19a9ed276e4d594c841b9772afee462c5fec8a314147ce3687dbe02733abe9d97b3e80d99a0405562634a6b8fc3be847e.js" integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX&#43;yKMUFHzjaH2&#43;AnM6vp2Xs&#43;gNmaBAVWJjSmuPw76Efg==" onload="renderMathInElement(document.body);"></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+</head><body
+    class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400"
+          >&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <div style="padding-left:0;padding-right:0"
+    class="flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            <a href="/sharetown/sharetown.github.io" class="text-base font-medium text-gray-500 hover:text-gray-900">SharetownBlog</a>
+            
+            
+        </nav>
+        <div class="hidden md:flex items-center space-x-5 md:ml-12">
+
+            
+            
+            <a href="/sharetown/sharetown.github.io/posts/" class="text-base font-medium text-gray-500 hover:text-gray-900" title="Posts">
+                
+
+
+                
+                博客
+            </a>
+            
+            <a href="/sharetown/sharetown.github.io/about/" class="text-base font-medium text-gray-500 hover:text-gray-900" title="关于我">
+                
+
+
+                
+                关于
+            </a>
+            
+            <a href="https://github.com/sharetown" class="text-base font-medium text-gray-500 hover:text-gray-900" title="">
+                
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+                
+                
+            </a>
+            
+            
+
+            
+
+
+            
+            <button id="search-button" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+                <button id="appearance-switcher" type="button">
+                    <div class="flex items-center justify-center h-12 dark:hidden">
+                        
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden h-12 dark:flex">
+                        
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </div>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" type="button" style="margin-right:5px">
+                <div class="flex items-center justify-center h-12 dark:hidden">
+                    
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden h-12 dark:flex">
+                    
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:25px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-auto overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex movedown flex-col w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl sm:px-14 md:px-24 lg:px-32 sm:py-10 sm:pt-10">
+                    <li class="mb-1">
+                        <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+                    
+                    <li class="mb-1">
+                        <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                            href="/sharetown/sharetown.github.io/posts/" title="Posts">
+                            
+
+
+                            
+                            博客
+                        </a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                            href="/sharetown/sharetown.github.io/about/" title="关于我">
+                            
+
+
+                            
+                            关于
+                        </a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                            href="https://github.com/sharetown" title="">
+                            
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+                            
+                            
+                        </a>
+                    </li>
+                    
+                    
+
+                </ul>
+            </div>
+        </label>
+    </div>
+</div>
+
+
+<div id="mobile-menu"
+    class="fixed inset-0 z-30 invisible w-screen h-screen m-auto overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+    <ul
+        class="flex movedown flex-col w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl sm:px-14 md:px-24 lg:px-32 sm:py-10 sm:pt-10">
+        <li class="mb-1">
+            <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+        </li>
+        
+        
+        <li class="mb-1">
+            <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                href="/sharetown/sharetown.github.io/posts/" title="Posts">博客</a>
+        </li>
+        
+        <li class="mb-1">
+            <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                href="/sharetown/sharetown.github.io/about/" title="关于我">关于</a>
+        </li>
+        
+        <li class="mb-1">
+            <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                href="https://github.com/sharetown" title=""></a>
+        </li>
+        
+        
+        
+        <li>
+            <button id="search-button-mobile" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+        </li>
+        
+    </ul>
+</div>
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+<article>
+  
+  
+  
+  
+        <div id="hero" class="relative h-[300px] single_hero_background nozoom" style="background-image:url(/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/featured_hu64e3adc53dc6e4c56cfa0b183f99f44b_4236161_1200x0_resize_q75_box.jpg);">
+            <div class="hero_gradient bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+        </div>
+    
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/sharetown/sharetown.github.io/"
+      >SharetownBlog</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/sharetown/sharetown.github.io/posts/"
+      >Posts</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"
+      >线性回归及非线性回归</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      线性回归及非线性回归
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2022-10-26 22:14:25 &#43;0800 CST">26 October 2022</time><span class="px-2 text-primary-500">&middot;</span><span>1148 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">6 分钟</span>
+  
+
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/sharetown/sharetown.github.io/categories/python/&#34;);">
+    <span class="flex">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
+  >
+    python
+  </span>
+</span>
+
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/sharetown/sharetown.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/&#34;);">
+    <span class="flex">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
+  >
+    机器学习
+  </span>
+</span>
+
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/sharetown/sharetown.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/&#34;);">
+    <span class="flex">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
+  >
+    线性回归
+  </span>
+</span>
+
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/sharetown/sharetown.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/&#34;);">
+    <span class="flex">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400"
+  >
+    非线性回归
+  </span>
+</span>
+
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+  </header>
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+     
+    <div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10">
+        <details open class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#代价函数损失函数cost-function">代价函数（损失函数）（Cost function）</a></li>
+        <li><a href="#一梯度下降">一、梯度下降</a>
+          <ul>
+            <li><a href="#1用梯度下降法来求解线性回归">1、用梯度下降法来求解线性回归</a></li>
+            <li><a href="#实战11-一元线性回归">实战1.1 一元线性回归</a></li>
+            <li><a href="#实战12-直接用sklearn库实现记住这个">实战1.2 直接用sklearn库实现：（记住这个）</a></li>
+            <li><a href="#多元线性回归">多元线性回归</a></li>
+            <li><a href="#2梯度下降法解决多元线性回归">2、梯度下降法解决多元线性回归</a></li>
+            <li><a href="#3多项式回归">3、多项式回归</a></li>
+          </ul>
+        </li>
+        <li><a href="#二标准方程法">二、标准方程法</a>
+          <ul>
+            <li><a href="#这里涉及到矩阵求导">这里涉及到矩阵求导</a></li>
+            <li><a href="#梯度下降法和标准方程法的优缺点对比">梯度下降法和标准方程法的优缺点对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#三特征缩放">三、特征缩放</a>
+          <ul>
+            <li><a href="#1数据归一化">1、数据归一化</a></li>
+            <li><a href="#2均值标准化">2、均值标准化</a></li>
+          </ul>
+        </li>
+        <li><a href="#四交叉验证法">四、交叉验证法</a></li>
+        <li><a href="#五过拟合及正则化">五、过拟合及正则化</a>
+          <ul>
+            <li><a href="#防止过拟合的措施">防止过拟合的措施</a></li>
+            <li><a href="#正则化">正则化</a></li>
+          </ul>
+        </li>
+        <li><a href="#六岭回归">六、岭回归</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#代价函数损失函数cost-function">代价函数（损失函数）（Cost function）</a></li>
+        <li><a href="#一梯度下降">一、梯度下降</a>
+          <ul>
+            <li><a href="#1用梯度下降法来求解线性回归">1、用梯度下降法来求解线性回归</a></li>
+            <li><a href="#实战11-一元线性回归">实战1.1 一元线性回归</a></li>
+            <li><a href="#实战12-直接用sklearn库实现记住这个">实战1.2 直接用sklearn库实现：（记住这个）</a></li>
+            <li><a href="#多元线性回归">多元线性回归</a></li>
+            <li><a href="#2梯度下降法解决多元线性回归">2、梯度下降法解决多元线性回归</a></li>
+            <li><a href="#3多项式回归">3、多项式回归</a></li>
+          </ul>
+        </li>
+        <li><a href="#二标准方程法">二、标准方程法</a>
+          <ul>
+            <li><a href="#这里涉及到矩阵求导">这里涉及到矩阵求导</a></li>
+            <li><a href="#梯度下降法和标准方程法的优缺点对比">梯度下降法和标准方程法的优缺点对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#三特征缩放">三、特征缩放</a>
+          <ul>
+            <li><a href="#1数据归一化">1、数据归一化</a></li>
+            <li><a href="#2均值标准化">2、均值标准化</a></li>
+          </ul>
+        </li>
+        <li><a href="#四交叉验证法">四、交叉验证法</a></li>
+        <li><a href="#五过拟合及正则化">五、过拟合及正则化</a>
+          <ul>
+            <li><a href="#防止过拟合的措施">防止过拟合的措施</a></li>
+            <li><a href="#正则化">正则化</a></li>
+          </ul>
+        </li>
+        <li><a href="#六岭回归">六、岭回归</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+      </div>
+      </div>
+      
+      <div class="min-w-0 min-h-0 max-w-prose">
+        
+        <p>
+ 
+线性还是非线性是要根据分析的目标来决定的，在线性回归和非线性回归中，我们需要求解的是模型参数，因而，线性与非线性描述的是函数模型与模型参数之间的关系，而非因变量与自变量之间的关系</p>
+<h3 id="代价函数损失函数cost-function" class="relative group">代价函数（损失函数）（Cost function） <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%bb%a3%e4%bb%b7%e5%87%bd%e6%95%b0%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0cost-function" aria-label="锚点">#</a></span></h3>
+<ul>
+<li>最小二乘法</li>
+<li>真实值$y$,预测值$h_\theta$,则误差平方为$(y-h_\theta(x))^2$.</li>
+<li>找到合适的参数，使得误差平方和：
+$$
+对于线性的：
+h_\theta(x)=\theta_0+\theta_1x</li>
+</ul>
+<p>J(\theta_0,\theta_1)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2
+$$
+最小</p>
+<ul>
+<li>我们使用相关系数去衡量线性相关的强弱：
+$$
+r_{xy}=\dfrac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2\sum(Y_i-\overline{Y})^2}}
+$$
+其中$X_i$表示真实值的横坐标；$Y_i$表示真实值纵横坐标；$\overline{X}$表示真实值的横坐标的平均值；$\overline{Y}$表示真实值的纵坐标的平均值。</li>
+<li>相关系数$R^2$是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。</li>
+<li>总平方和（SST）：$\textstyle\sum_{i=1}^n(y_i-\overline{y})^2$</li>
+<li>回归平方和（SSR）：$\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2$</li>
+<li>残差平方和（SSE）：$\textstyle\sum_{i=1}^n(y_i-\hat{y})^2$</li>
+<li>它们三者的关系是：$SST=SSR+SSE$</li>
+<li>决定系数：$R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$</li>
+</ul>
+<h3 id="一梯度下降" class="relative group">一、梯度下降 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%b8%80%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d" aria-label="锚点">#</a></span></h3>
+<p>需要做一个迭代：
+$$
+\theta_j:=\theta_j-\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1),j=0,1
+$$
+其中$\alpha$为学习率;$:=$为赋值符，将右边赋值给左边</p>
+<p>这个迭代公式在更新的时候必须同步更新，即：
+$$
+temp0:=\theta_0-\alpha\dfrac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)</p>
+<p>temp1:=\theta_1-\alpha\dfrac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)</p>
+<p>\theta_0:=temp0</p>
+<p>\theta_1:=temp1
+$$
+学习率不能太小也不能太大。太小计算耗时，太大就会发生震荡。</p>
+<h4 id="1用梯度下降法来求解线性回归" class="relative group">1、用梯度下降法来求解线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e7%94%a8%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e6%9d%a5%e6%b1%82%e8%a7%a3%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+<p>上面提到的$\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)$`拆开来是这样的：
+$$
+j=0:\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)=\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})
+$$
+$$
+j=1:\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)=\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})\cdotp x^{(i)}
+$$
+需要注意的是用梯度下降法来求解线性回归，如果函数是凸函数那么最终可以求得全局最优解，但如果函数是非凸函数，那么求得的解就有可能陷入局部最优。</p>
+<h4 id="实战11-一元线性回归" class="relative group">实战1.1 一元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%ae%9e%e6%88%9811-%e4%b8%80%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+<p><strong>语言</strong>：Python</p>
+<p>一、使用numpy实现**：**</p>
+<p>第三方库**：numpy、matplotlib。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------上面是导包</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 载入数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">&#34;data.csv&#34;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意data.csv的路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-----------------------上面是载入数据后给原始数据利用matplotlib画出原始数据的散点图</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 学习率learning rate</span>
+</span></span><span class="line"><span class="cl"><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0001</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 截距</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 斜率</span>
+</span></span><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 最大迭代次数</span>
+</span></span><span class="line"><span class="cl"><span class="n">epochs</span> <span class="o">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#------------------------上面这段初始化学习率、截距、斜率和最大迭代次数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最小二乘法</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compute_error</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">totalError</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">totalError</span> <span class="o">+=</span> <span class="p">(</span><span class="n">y_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">totalError</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#--------------------------上面这段是利用最小二乘法求误差平方和</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gradient_descent_runner</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span><span class="c1">#这个函数就是利用梯度下降迭代来更新斜率和截距</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算总数据量</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 循环epochs次</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b_grad</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">#临时截距</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k_grad</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">#临时斜率</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 计算梯度的总和再求平均</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b_grad</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(((</span><span class="n">k</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k_grad</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">(((</span><span class="n">k</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 更新b和k</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="n">lr</span> <span class="o">*</span> <span class="n">b_grad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="p">(</span><span class="n">lr</span> <span class="o">*</span> <span class="n">k_grad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#---------------------完全按照梯度下降的公式实现的。</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 每迭代5次，输出一次图像</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         if i % 5==0:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#             print(&#34;epochs:&#34;,i)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#             plt.plot(x_data, y_data, &#39;b.&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#             plt.plot(x_data, k*x_data + b, &#39;r&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#             plt.show()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#被注释这一段可以每五次输出一张迭代后的图，可以很直观的看到对比。</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Starting b = </span><span class="si">{0}</span><span class="s2">, k = </span><span class="si">{1}</span><span class="s2">, error = </span><span class="si">{2}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Running...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">gradient_descent_runner</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;After </span><span class="si">{0}</span><span class="s2"> iterations b = </span><span class="si">{1}</span><span class="s2">, k = </span><span class="si">{2}</span><span class="s2">, error = </span><span class="si">{3}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#画图</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">k</span><span class="o">*</span><span class="n">x_data</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-----------------最后这一段就是一个结果的输出</span>
+</span></span></code></pre></div><h4 id="实战12-直接用sklearn库实现记住这个" class="relative group">实战1.2 直接用sklearn库实现：（记住这个） <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%ae%9e%e6%88%9812-%e7%9b%b4%e6%8e%a5%e7%94%a8sklearn%e5%ba%93%e5%ae%9e%e7%8e%b0%e8%ae%b0%e4%bd%8f%e8%bf%99%e4%b8%aa" aria-label="锚点">#</a></span></h4>
+<p><strong>第三方库</strong>：numpy、matplotlib、sklearn。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="c1">#导入sklearn中处理线性回归的包LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------导包</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 载入数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">&#34;data.csv&#34;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------导入数据并画出原始数据的散点图</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="c1">#将数据的0列的元素切片出来，并利用np.newaxis这个参数使其具有维度。</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建并拟合模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="c1">#创建LinearRegression类的对象model</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span><span class="c1">#model对象调用fit函数，将两列元素传进去，由已经封装好的函数进行计算</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#--------------------------用sklearn的LinearRegression进行建模</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 画图</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_data</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-------------------------只画图</span>
+</span></span></code></pre></div><h4 id="多元线性回归" class="relative group">多元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%a4%9a%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+<p>当<code>$y$</code>的影响因素不是唯一时，采用多元线性回归模型。</p>
+<p><strong>多特征</strong>
+$$
+h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\dots+\theta_nx_n
+$$
+那么在这里的话有多少个特征就会有多少个x。</p>
+<p><strong>多元线性回归的梯度下降</strong>
+$$
+\theta_j:=\theta_j-\alpha\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)}) x_j^{(i)}</p>
+<p>(j=0,\dots,n)
+$$</p>
+<h4 id="2梯度下降法解决多元线性回归" class="relative group">2、梯度下降法解决多元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e8%a7%a3%e5%86%b3%e5%a4%9a%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+<p><strong>实战2.1：利用numpy使用梯度下降法</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">genfromtxt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span><span class="c1">#画3D图的库</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------------导库</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">genfromtxt</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Delivery.csv&#34;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 切分数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-----------------------------导入数据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 学习率learning rate</span>
+</span></span><span class="line"><span class="cl"><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0001</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta0</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta1</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta2</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最大迭代次数</span>
+</span></span><span class="line"><span class="cl"><span class="n">epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最小二乘法</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compute_error</span><span class="p">(</span><span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">totalError</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">totalError</span> <span class="o">+=</span> <span class="p">(</span><span class="n">y_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">theta1</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta2</span><span class="o">*</span><span class="n">x_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta0</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">totalError</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-----------------------------------求代价函数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gradient_descent_runner</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算总数据量</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 循环epochs次</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta0_grad</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta1_grad</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta2_grad</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 计算梯度的总和再求平均</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">theta0_grad</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">theta1</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta2</span><span class="o">*</span><span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta0</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="n">theta1_grad</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">theta1</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta2</span><span class="o">*</span><span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta0</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="n">theta2_grad</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">theta1</span> <span class="o">*</span> <span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta2</span><span class="o">*</span><span class="n">x_data</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta0</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_data</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 更新b和k</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta0</span> <span class="o">=</span> <span class="n">theta0</span> <span class="o">-</span> <span class="p">(</span><span class="n">lr</span><span class="o">*</span><span class="n">theta0_grad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta1</span> <span class="o">=</span> <span class="n">theta1</span> <span class="o">-</span> <span class="p">(</span><span class="n">lr</span><span class="o">*</span><span class="n">theta1_grad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">theta2</span> <span class="o">=</span> <span class="n">theta2</span> <span class="o">-</span> <span class="p">(</span><span class="n">lr</span><span class="o">*</span><span class="n">theta2_grad</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#--------------------------------梯度下降法迭代更新参数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Starting theta0 = </span><span class="si">{0}</span><span class="s2">, theta1 = </span><span class="si">{1}</span><span class="s2">, theta2 = </span><span class="si">{2}</span><span class="s2">, error = </span><span class="si">{3}</span><span class="s2">&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">format</span><span class="p">(</span><span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Running...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span> <span class="o">=</span> <span class="n">gradient_descent_runner</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;After </span><span class="si">{0}</span><span class="s2"> iterations theta0 = </span><span class="si">{1}</span><span class="s2">, theta1 = </span><span class="si">{2}</span><span class="s2">, theta2 = </span><span class="si">{3}</span><span class="s2">, error = </span><span class="si">{4}</span><span class="s2">&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">format</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">theta0</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl"><span class="c1">#------------------------------调用写的函数并输出结果</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">#点为红色三角形  </span>
+</span></span><span class="line"><span class="cl"><span class="n">x0</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成网格矩阵</span>
+</span></span><span class="line"><span class="cl"><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="o">=</span> <span class="n">theta0</span> <span class="o">+</span> <span class="n">x0</span><span class="o">*</span><span class="n">theta1</span> <span class="o">+</span> <span class="n">x1</span><span class="o">*</span><span class="n">theta2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 画3D图</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#设置坐标轴  </span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Miles&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Num of Deliveries&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">#显示图像  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------------画图，并且是画3D图</span>
+</span></span></code></pre></div><p><strong>实战2.2：利用sklearn库实现多元线性回归（代码少）</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">genfromtxt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">#------------------------------导库</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 读入数据 </span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">genfromtxt</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Delivery.csv&#34;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 切分数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-----------------------------导入数据</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------------利用库建模</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 系数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;coefficients:&#34;</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 截距</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;intercept:&#34;</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_test</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">102</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="n">predict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;predict:&#34;</span><span class="p">,</span><span class="n">predict</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-------------------------------输出计算出的模型的参数并进行测试</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">#点为红色三角形  </span>
+</span></span><span class="line"><span class="cl"><span class="n">x0</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">x1</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成网格矩阵</span>
+</span></span><span class="line"><span class="cl"><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">z</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">+</span> <span class="n">x0</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x1</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 画3D图</span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#设置坐标轴  </span>
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Miles&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Num of Deliveries&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">#显示图像  </span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">#------------------------------画3D图</span>
+</span></span></code></pre></div><h4 id="3多项式回归" class="relative group">3、多项式回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3%e5%a4%9a%e9%a1%b9%e5%bc%8f%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+<p>多项式回归，回归函数是回归变量多项式的回归。多项式回归模型是线性回归模型的一种，此时回归函数关于回归系数是线性的。由于任一函数都可以用多项式逼近，因此多项式回归有着广泛应用。
+$$
+y=\theta_0+\theta_1x+\theta_2x+\theta_3x+\dots+\theta_nx
+$$
+<strong>实战</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#--------------------------导包</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 载入数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">&#34;job.csv&#34;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">y_data</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#---------------------------数据的导入</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建并拟合模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#------------------------------先使用一元线性回归的模型来拟合</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 画图</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_data</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-------------------------------画出使用一元线性回归来拟合多项式的结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 定义多项式回归,degree的值可以调节多项式的特征</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly_reg</span>  <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 特征处理</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_poly</span> <span class="o">=</span> <span class="n">poly_reg</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 定义回归模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">lin_reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 训练模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">lin_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_poly</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#---------------------------------定义多项式回归并训练模型</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 画图</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">poly_reg</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_data</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Truth or Bluff (Polynomial Regression)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position level&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Salary&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#--------------------------------画出使用多项式回归的结果图</span>
+</span></span></code></pre></div><h3 id="二标准方程法" class="relative group">二、标准方程法 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%ba%8c%e6%a0%87%e5%87%86%e6%96%b9%e7%a8%8b%e6%b3%95" aria-label="锚点">#</a></span></h3>
+<p>标准方程法就是令式子的代价函数的偏导都等于0时所求得的解向量就是使代价函数最小的解。
+$$
+令\dfrac{\partial}{\partial\theta_j}J(\theta)=\dots=0</p>
+<p>求解:\theta_0,\theta_1,\dots,\theta_n
+$$
+我们知道，在梯度下降法中，式子的代价函数为$J(\theta_0,\theta_1,\dots,\theta_n)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2$
+当我们有一组数据，我们把自变量用矩阵<code>$X$</code>表示，自变量用矩阵<code>$y$</code>表示，需要求解的令代价函数等于零的解用矩阵<code>w</code>表示。例如：
+$$
+X=\begin{bmatrix}x_{0,0}&amp;x_{0,1}&amp;x_{0,2}&amp;x_{0,3}&amp;x_{0,4}\x_{1,0}&amp;x_{1,1}&amp;x_{1,2}&amp;x_{1,3}&amp;x_{1,4}\x_{2,0}&amp;x_{2,1}&amp;x_{2,2}&amp;x_{2,3}&amp;x_{2,4}\x_{3,0}&amp;x_{3,1}&amp;x_{3,2}&amp;x_{3,3}&amp;x_{3,4}\end{bmatrix} w=\begin{bmatrix}w_0\w_1\w_2\w_3\w_4 \end{bmatrix} y=\begin{bmatrix}y_0\y_1\y_2\y_3\y_4 \end{bmatrix}</p>
+<p>\displaystyle\sum_{i=1}^m(h_w(x^i)-y_i)^2=(y-Xw)^T(y-Xw)
+$$</p>
+<h4 id="这里涉及到矩阵求导" class="relative group">这里涉及到矩阵求导 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e8%bf%99%e9%87%8c%e6%b6%89%e5%8f%8a%e5%88%b0%e7%9f%a9%e9%98%b5%e6%b1%82%e5%af%bc" aria-label="锚点">#</a></span></h4>
+<p><strong>分子布局：</strong> 分子为列向量或者分母为行向量</p>
+<p>**分母布局：**分子为行向量或者分母为列向量
+$$
+\dfrac{\partial(y-Xw)^T(y-Xw)}{\partial w}
+$$
+$$
+\dfrac{\partial(y^Ty-y^TXw-w^TX^Ty+w^TX^TXw)}{\partial w}
+$$
+$$
+\dfrac{\partial y^Ty}{\partial w}-\dfrac{\partial y^TXw}{\partial w}-\dfrac{\partial w^TX^Ty}{\partial w}+\dfrac{\partial w^TX^TXw}{\partial w}
+$$
+<strong>矩阵的求导百度查表</strong></p>
+<p>在这里我们查表后可以求得：
+$$
+\dfrac{\partial y^Ty}{\partial w}=0
+$$
+$$
+\dfrac{\partial y^TXw}{\partial w}=X^Ty
+$$
+$$
+\dfrac{\partial w^TX^Ty}{\partial w}=\dfrac{\partial(w^TX^Ty)^T}{\partial w}=\dfrac{\partial y^TXw}{\partial w}=X^Ty
+$$
+$$
+\dfrac{\partial w^TX^TXw}{\partial w}=2X^TXw
+$$
+那么：
+$$
+\dfrac{\partial y^Ty}{\partial w}-\dfrac{\partial y^TXw}{\partial w}-\dfrac{\partial w^TX^Ty}{\partial w}+\dfrac{\partial w^TX^TXw}{\partial w}=0-X^Ty-X^Ty+2X^TXw
+$$
+$$
+-2X^Ty+2X^TXw=0
+$$
+$$
+X^TXw=X^Ty
+$$
+$$
+(X^TX)^{-1}X^TXw=(X^TX)^{-1}X^Ty
+$$
+$$
+w=(X^TX)^{-}X^Ty
+$$
+<strong>矩阵不可逆的情况</strong>
+1、线性相关的特征(多重共线性)。
+例如:$x_1$为房子的面积,单位是平方英尺
+$x_2$为房子的面积,单位是平方米
+预测房价
+1平方英尺$≈0.0929$平方米
+2、特征数据太多(样本数m≤特征数量n )</p>
+<h4 id="梯度下降法和标准方程法的优缺点对比" class="relative group">梯度下降法和标准方程法的优缺点对比 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e5%92%8c%e6%a0%87%e5%87%86%e6%96%b9%e7%a8%8b%e6%b3%95%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9%e5%af%b9%e6%af%94" aria-label="锚点">#</a></span></h4>
+<table>
+<thead>
+<tr>
+<th>方程类型</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>梯度下降法</td>
+<td>当特征值非常多的时候也可以很好的工作</td>
+<td>需要选择合适的学习率<br>需要迭代很多个周期<br>只能得到最优解的近似值</td>
+</tr>
+<tr>
+<td>标准方程法</td>
+<td>不需要学习率<br>不需要迭代<br>可以得到全局最优解</td>
+<td>需要计算<code>$(X^TX)^{-1}$</code><br>时间复杂度大约是<code>$O(n^3)$</code><br>n是特征数量</td>
+</tr>
+<tr>
+<td><strong>实战：</strong> 标准方程法解决线性回归</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">genfromtxt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-----------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 载入数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">&#34;data.csv&#34;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&#34;,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 给样本添加偏置项</span>
+</span></span><span class="line"><span class="cl"><span class="n">X_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="n">x_data</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">X_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 标准方程法求解回归参数</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">weights</span><span class="p">(</span><span class="n">xArr</span><span class="p">,</span> <span class="n">yArr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">xArr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">yMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">yArr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xTx</span> <span class="o">=</span> <span class="n">xMat</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">xMat</span> <span class="c1"># 矩阵乘法</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算矩阵的值,如果值为0，说明该矩阵没有逆矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">xTx</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This matrix cannot do inverse&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># xTx.I为xTx的逆矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ws</span> <span class="o">=</span> <span class="n">xTx</span><span class="o">.</span><span class="n">I</span><span class="o">*</span><span class="n">xMat</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">yMat</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ws</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#调用上面这个函数</span>
+</span></span><span class="line"><span class="cl"><span class="n">ws</span> <span class="o">=</span> <span class="n">weights</span><span class="p">(</span><span class="n">X_data</span><span class="p">,</span><span class="n">y_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#----------------------------------</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 画图</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">20</span><span class="p">],[</span><span class="mi">80</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y_test</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_test</span><span class="o">*</span><span class="n">ws</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="三特征缩放" class="relative group">三、特征缩放 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%b8%89%e7%89%b9%e5%be%81%e7%bc%a9%e6%94%be" aria-label="锚点">#</a></span></h3>
+<p>当数据中的特征的值相差较大时将不利于我们拟合以及作图。例如$x_1=房子的面积（1000000cm^2-2000000cm^2)$
+$x_2=房间的数量（1-5）$</p>
+<h4 id="1数据归一化" class="relative group">1、数据归一化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e6%95%b0%e6%8d%ae%e5%bd%92%e4%b8%80%e5%8c%96" aria-label="锚点">#</a></span></h4>
+<p>数据归一化就是把数据的取值范围处为0-1或者-1-1之间
+任意数据转化为0-1之间：$newValue=(oldValue-min)/(max-min)$
+任意数据转化为-1-1之间：$newValue=((oldValue-min)/(max-min)-0.5)*2$</p>
+<h4 id="2均值标准化" class="relative group">2、均值标准化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e5%9d%87%e5%80%bc%e6%a0%87%e5%87%86%e5%8c%96" aria-label="锚点">#</a></span></h4>
+<p>$newValue=(oldValue-u)/s$<br>x为特诊数据，u为数据的平均值，s为数据的方差</p>
+<h3 id="四交叉验证法" class="relative group">四、交叉验证法 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%9b%9b%e4%ba%a4%e5%8f%89%e9%aa%8c%e8%af%81%e6%b3%95" aria-label="锚点">#</a></span></h3>
+<p>当数据中的记录数量本身不是很多时，如果将数据集按原来的方式划分成训练集和测试集时，就会降低我们训练的效果。这时我们可以将数据划分成n等份（一般划分为10份）然后需要循环n次，每一次循环都取不一样的一份为测试机，剩下的全部为训练集，这样每执行一次循环都会得到一个误差值E，那么最后我们所有误差求和后在求平均值就可以得到较好的误差的值$E=\dfrac{1}{n}\displaystyle\sum_{i=1}^nE_i$</p>
+<h3 id="五过拟合及正则化" class="relative group">五、过拟合及正则化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%ba%94%e8%bf%87%e6%8b%9f%e5%90%88%e5%8f%8a%e6%ad%a3%e5%88%99%e5%8c%96" aria-label="锚点">#</a></span></h3>
+<p>拟合情况一般可以分为三种：欠拟合、正确拟合和过拟合。
+<strong>欠拟合</strong>：就是拟合程度不够导致模型在训练集和测试集中都表现较差。
+<strong>正确拟合</strong>：模型拟合程度高，在训练集和测试集里的表现都很好
+<strong>过拟合</strong>：模型的拟合程度太极端，导致模型在训练集中的表现非常完美，但是在测试集中往往会出现很多误差</p>
+<h4 id="防止过拟合的措施" class="relative group">防止过拟合的措施 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e9%98%b2%e6%ad%a2%e8%bf%87%e6%8b%9f%e5%90%88%e7%9a%84%e6%8e%aa%e6%96%bd" aria-label="锚点">#</a></span></h4>
+<p>1.减少特征
+2.增加数据量
+3.正则化</p>
+<h4 id="正则化" class="relative group">正则化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e6%ad%a3%e5%88%99%e5%8c%96" aria-label="锚点">#</a></span></h4>
+<p>正则化代价函数与普通的代价函数差不多，唯一的不同就是最后会加一项$\lambda\displaystyle\sum_{j=1}^n\theta_j^2$或则$\lambda\displaystyle\sum_{j=1}^n\vert\theta_j\vert$。前者叫L2正则化，后者叫L1正则化。</p>
+<h3 id="六岭回归" class="relative group">六、岭回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%85%ad%e5%b2%ad%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h3>
+<p>在前面标准方程法中求得的权值的表达式是：$w=(X^TX)^{-}X^Ty$。如果数据的特征比样本点还多, 数据特征n,样本个数m，如果n&gt; m,则计算$(X^TX)^{-1}$时会出错。因为$(X^TX)$不是满秩矩阵，所以不可逆。<br>
+为了解决这个问题,统计学家引入了岭回归的概念。
+$$
+w=(X^T+\lambda I)^{-1}X^Ty
+$$
+$\lambda$<code>为岭系数, $I$为单位矩阵(对角线.上全为1 ,其他元素全为0) 岭回归的代价函数是之前谈到的L2正则化。 $$ J(\theta)=\dfrac{1}{2}\displaystyle\sum_{i=1}^n(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{i}^n\theta_i^2 $$ 岭回归最早是用来处理特征数多于样本的情况,现在也 用于在估计中加入偏差,从而得到更好的估计。同时也 可以解决多重共线性的问题。岭回归是一种有偏估计。 **岭回归代价函数：**$J(\theta)=\dfrac{1}{2m}\left[\displaystyle\sum_{i=1}^m(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{j}^n\theta_j^2\right]$ **线性回归标准方程法：**$w=(X^TX)^{-}X^Ty$ **岭回归求解：**$w=(X^T+\lambda I)^{-1}X^Ty$ $\lambda为岭系数$ 在选择$\lambda$</code>的值的时候，需要考查下面两个问题使得:
+1.各回归系数的岭估计基本稳定。
+2.残差平方和增大不太多。</p>
+
+      </div>
+      <script>
+
+        var liked_article = false
+
+        if (typeof auth !== 'undefined') {
+          var oid = "views_posts\\线性回归及非线性回归\\index.md"
+          var id = oid ? oid.replaceAll("/", "-") : oid
+
+          var viewed = localStorage.getItem(id);
+
+          if (!viewed) {
+            auth.signInAnonymously()
+              .then(() => {
+                var docRef = db.collection('views').doc(id)
+                localStorage.setItem(id, true);
+                docRef.get().then((doc) => {
+                  if (doc.exists) {
+                    db.collection('views').doc(id).update({
+                      views: firebase.firestore.FieldValue.increment(1)
+                    });
+                  } else {
+                    db.collection('views').doc(id).set({ views: 1 })
+                  }
+                }).catch((error) => {
+                  console.log("Error getting document:", error);
+                });
+              })
+              .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error(errorCode, errorMessage)
+              });
+          }
+
+          var oid_likes = "likes_posts\\线性回归及非线性回归\\index.md"
+          var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
+
+          var liked = localStorage.getItem(id_likes);
+
+          if (liked) {
+            liked_article = true
+            document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
+            document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
+            document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
+          }
+
+        }
+
+        function like_article(id_likes) {
+          auth.signInAnonymously()
+            .then(() => {
+              var docRef = db.collection('likes').doc(id_likes)
+              docRef.get().then((doc) => {
+                liked_article = true
+                localStorage.setItem(id_likes, true);
+                document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = ""
+                document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = "none"
+                document.querySelectorAll("span[id='likes_button_text']")[0].innerText = ""
+                if (doc.exists) {
+                  db.collection('likes').doc(id_likes).update({
+                    likes: firebase.firestore.FieldValue.increment(1)
+                  });
+                } else {
+                  db.collection('likes').doc(id_likes).set({ likes: 1 })
+                }
+              }).catch((error) => {
+                console.log("Error getting document:", error);
+              });
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.error(errorCode, errorMessage)
+            });
+        }
+
+        function remove_like_article(id_likes) {
+          auth.signInAnonymously()
+            .then(() => {
+              var docRef = db.collection('likes').doc(id_likes)
+              docRef.get().then((doc) => {
+                liked_article = false
+                localStorage.removeItem(id_likes);
+                document.querySelectorAll("span[id='likes_button_heart']")[0].style.display = "none"
+                document.querySelectorAll("span[id='likes_button_emtpty_heart']")[0].style.display = ""
+                document.querySelectorAll("span[id='likes_button_text']")[0].innerText = "\xa0Like"
+                if (doc.exists) {
+                  db.collection('likes').doc(id_likes).update({
+                    likes: firebase.firestore.FieldValue.increment(-1)
+                  });
+                } else {
+                  db.collection('likes').doc(id_likes).set({ likes: 0 })
+                }
+              }).catch((error) => {
+                console.log("Error getting document:", error);
+              });
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.error(errorCode, errorMessage)
+            });
+        }
+
+        function process_article() {
+          var oid_likes = "likes_posts\\线性回归及非线性回归\\index.md"
+          var id_likes = oid_likes ? oid_likes.replaceAll("/", "-") : oid_likes
+          if (!liked_article) {
+            like_article(id_likes)
+          } else {
+            remove_like_article(id_likes)
+          }
+        }
+
+        var header = document.getElementById("single_header")
+        var style = getComputedStyle(header);
+        var hero = document.getElementById('hero')
+        if (hero) {
+          var margin = '-' + (parseInt(style.height) + parseInt(style.marginTop) + parseInt(style.marginBottom) + 20) + 'px'
+          var height = (-parseInt(margin) + parseInt(getComputedStyle(hero).height)) + "px"
+          console.log(height)
+          hero.style["margin-bottom"] = margin;
+          hero.style["height"] = height;
+        }
+
+      </script>
+  </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+
+
+    
+    
+    
+    
+
+    
+
+    
+  
+    
+    
+    
+      
+      
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group" href="/sharetown/sharetown.github.io/posts/echats%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >EChats组件的使用</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2022-10-26 22:26:23 &#43;0800 CST">26 October 2022</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group" href="/sharetown/sharetown.github.io/posts/numpy%E7%9A%84%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Numpy的简单入门</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2022-10-26 21:58:57 &#43;0800 CST">26 October 2022</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+        
+          <div
+            class="pointer-events-none absolute top-[100vh] bottom-0 w-12 ltr:right-0 rtl:left-0"
+          >
+            <a
+              href="#the-top"
+              class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+              aria-label="Scroll to top"
+              title="Scroll to top"
+            >
+              &uarr;
+            </a>
+          </div>
+        
+      </main><footer class="py-10 print:hidden">
+  
+  
+  <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+    <ul class="flex flex-col list-none sm:flex-row">
+      
+      <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+        <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/sharetown/sharetown.github.io/tags/"
+          title="Tags">标签</a>
+      </li>
+      
+      <li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+        <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href="/sharetown/sharetown.github.io/categories/"
+          title="Categories">分类</a>
+      </li>
+      
+    </ul>
+  </nav>
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2022
+      用笔尖丈量地球
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://nunocoracao.github.io/blowfish/" target="_blank" rel="noopener noreferrer">Blowfish</a> 强力驱动
+    </p>
+    
+
+  </div>
+  <script>
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+  </script>
+  
+  
+  <script type="text/javascript" src="/sharetown/sharetown.github.io/js/process.min.2166d3adac1679c00a75161830ab5725d3efc0e3d3f8c2453fb01d0907948436c25f0f8a7ad824322fa22f3f9c85fd4d0a1d5c856f53b862157da25a57dc3d52.js" integrity="sha512-IWbTrawWecAKdRYYMKtXJdPvwOPT&#43;MJFP7AdCQeUhDbCXw&#43;KetgkMi&#43;iLz&#43;chf1NCh1chW9TuGIVfaJaV9w9Ug=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://github.com/sharetown/sharetown.github.io"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>
