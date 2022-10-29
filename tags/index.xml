@@ -2,89 +2,89 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on SharetownBlog</title>
-    <link>https://github.com/sharetown/sharetown.github.io/tags/</link>
+    <link>https://sharetown.github.io/tags/</link>
     <description>Recent content in Tags on SharetownBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 26 Oct 2022 22:26:23 +0800</lastBuildDate><atom:link href="https://github.com/sharetown/sharetown.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Oct 2022 22:26:23 +0800</lastBuildDate><atom:link href="https://sharetown.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EChats</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/echats/</link>
+      <link>https://sharetown.github.io/tags/echats/</link>
       <pubDate>Wed, 26 Oct 2022 22:26:23 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/echats/</guid>
+      <guid>https://sharetown.github.io/tags/echats/</guid>
       <description></description>
     </item>
     
     <item>
       <title>前端</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
+      <link>https://sharetown.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
       <pubDate>Wed, 26 Oct 2022 22:26:23 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/%E5%89%8D%E7%AB%AF/</guid>
+      <guid>https://sharetown.github.io/tags/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>非线性回归</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+      <link>https://sharetown.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Wed, 26 Oct 2022 22:14:25 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://sharetown.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
       <description></description>
     </item>
     
     <item>
       <title>机器学习</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://sharetown.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 26 Oct 2022 22:14:25 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://sharetown.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>线性回归</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+      <link>https://sharetown.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Wed, 26 Oct 2022 22:14:25 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://sharetown.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Numpy</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/numpy/</link>
+      <link>https://sharetown.github.io/tags/numpy/</link>
       <pubDate>Wed, 26 Oct 2022 21:58:57 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/numpy/</guid>
+      <guid>https://sharetown.github.io/tags/numpy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blowfish</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/blowfish/</link>
+      <link>https://sharetown.github.io/tags/blowfish/</link>
       <pubDate>Tue, 25 Oct 2022 21:25:00 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/blowfish/</guid>
+      <guid>https://sharetown.github.io/tags/blowfish/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/hugo/</link>
+      <link>https://sharetown.github.io/tags/hugo/</link>
       <pubDate>Tue, 25 Oct 2022 21:25:00 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/hugo/</guid>
+      <guid>https://sharetown.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>https://github.com/sharetown/sharetown.github.io/tags/markdown/</link>
+      <link>https://sharetown.github.io/tags/markdown/</link>
       <pubDate>Tue, 25 Oct 2022 21:25:00 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/tags/markdown/</guid>
+      <guid>https://sharetown.github.io/tags/markdown/</guid>
       <description></description>
     </item>
     

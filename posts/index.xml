@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on SharetownBlog</title>
-    <link>https://github.com/sharetown/sharetown.github.io/posts/</link>
+    <link>https://sharetown.github.io/posts/</link>
     <description>Recent content in Posts on SharetownBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 26 Oct 2022 22:26:23 +0800</lastBuildDate><atom:link href="https://github.com/sharetown/sharetown.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Oct 2022 22:26:23 +0800</lastBuildDate><atom:link href="https://sharetown.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EChats组件的使用</title>
-      <link>https://github.com/sharetown/sharetown.github.io/posts/echats%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://sharetown.github.io/posts/echats%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Wed, 26 Oct 2022 22:26:23 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/posts/echats%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://sharetown.github.io/posts/echats%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>Echats插件的使用 # 一、什么是Echats？ # ECharts 是一个使用 JavaScript 实现的开源可视化库，涵盖各行业图表，满足各种需求。
 ECharts 遵循 Apache-2.0 开源协议，免费商用。
 ECharts 兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Safari等）及兼容多种设备，可随时随地任性展示。
@@ -24,10 +24,10 @@ ECharts 兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Saf
     
     <item>
       <title>线性回归及非线性回归</title>
-      <link>https://github.com/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+      <link>https://sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
       <pubDate>Wed, 26 Oct 2022 22:14:25 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+      <guid>https://sharetown.github.io/posts/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E5%8F%8A%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
       <description>线性还是非线性是要根据分析的目标来决定的，在线性回归和非线性回归中，我们需要求解的是模型参数，因而，线性与非线性描述的是函数模型与模型参数之间的关系，而非因变量与自变量之间的关系
 代价函数（损失函数）（Cost function） # 最小二乘法 真实值$y$,预测值$h_\theta$,则误差平方为$(y-h_\theta(x))^2$. 找到合适的参数，使得误差平方和： $$ 对于线性的： h_\theta(x)=\theta_0+\theta_1x J(\theta_0,\theta_1)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2 $$ 最小
 我们使用相关系数去衡量线性相关的强弱： $$ r_{xy}=\dfrac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2\sum(Y_i-\overline{Y})^2}} $$ 其中$X_i$表示真实值的横坐标；$Y_i$表示真实值纵横坐标；$\overline{X}$表示真实值的横坐标的平均值；$\overline{Y}$表示真实值的纵坐标的平均值。 相关系数$R^2$是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。 总平方和（SST）：$\textstyle\sum_{i=1}^n(y_i-\overline{y})^2$ 回归平方和（SSR）：$\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2$ 残差平方和（SSE）：$\textstyle\sum_{i=1}^n(y_i-\hat{y})^2$ 它们三者的关系是：$SST=SSR+SSE$ 决定系数：$R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$ 一、梯度下降 # 需要做一个迭代： $$ \theta_j:=\theta_j-\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1),j=0,1 $$ 其中$\alpha$为学习率;$:=$为赋值符，将右边赋值给左边</description>
@@ -35,10 +35,10 @@ ECharts 兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Saf
     
     <item>
       <title>Numpy的简单入门</title>
-      <link>https://github.com/sharetown/sharetown.github.io/posts/numpy%E7%9A%84%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/</link>
+      <link>https://sharetown.github.io/posts/numpy%E7%9A%84%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/</link>
       <pubDate>Wed, 26 Oct 2022 21:58:57 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/posts/numpy%E7%9A%84%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/</guid>
+      <guid>https://sharetown.github.io/posts/numpy%E7%9A%84%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8/</guid>
       <description>NumPy是一个功能强大的Python库，主要用于对多维数组执行计算。NumPy这个词来源于两个单词&amp;ndash; Numerical和Python。NumPy提供了大量的库函数和操作，可以帮助程序员轻松地进行数值计算。这类数值计算广泛用于以下任务：
 机器学习模型：在编写机器学习算法时，需要对矩阵进行各种数值计算。例如矩阵乘法、换位、加法等。NumPy提供了一个非常好的库，用于简单(在编写代码方面)和快速(在速度方面)计算。NumPy数组用于存储训练数据和机器学习模型的参数。 图像处理和计算机图形学：计算机中的图像表示为多维数字数组。NumPy成为同样情况下最自然的选择。实际上，NumPy提供了一些优秀的库函数来快速处理图像。例如，镜像图像、按特定角度旋转图像等。 数学任务：NumPy对于执行各种数学任务非常有用，如数值积分、微分、内插、外推等。因此，当涉及到数学任务时，它形成了一种基于Python的MATLAB的快速替代。 一、Numpy中的数组 # import numpy as np
 函数 作用 np.array() 生成一维或多维数组 np.shape 查看数组的形状。 np.zeros((n)) 生成一个n元素的一维的全0数组 np.zeros((n,m)) 生成一个n*m维的全0数组 np.ones((n)) 生成全1的数组 np.ones((n,m)) 生成n*m的全1的数组 np.random.random((n)) 随机生成一个n元素的一维数组 (()) 凡是带两个括号的函数里面跟的都是向量。可以是多个数 np.</description>
@@ -46,10 +46,10 @@ ECharts 兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Saf
     
     <item>
       <title>如何使用Hugo引用Blowfish主题创建一个唯美的博客</title>
-      <link>https://github.com/sharetown/sharetown.github.io/posts/hi/</link>
+      <link>https://sharetown.github.io/posts/hi/</link>
       <pubDate>Tue, 25 Oct 2022 21:25:00 +0800</pubDate>
       
-      <guid>https://github.com/sharetown/sharetown.github.io/posts/hi/</guid>
+      <guid>https://sharetown.github.io/posts/hi/</guid>
       <description>Hugo是Go编写的静态网站生成器，速度快,易用，可配置。Hugo 有一个内容和模板目录，把他们渲染到完全的HTML网站。Hugo非常适合博客，文档等等网站的生成。Hugo依赖于Markdown文件，元数据字体。用户可以从任意的目录中运行 Hugo，支持共享主机和其他系统。
 一、安装Hugo（windows） # Github下载Hugo的发行版 https://github.com/gohugoio/hugo/releases 本人推荐下载extended版的 将下载好的zip文件解压到你想存放的hugo的安装目录。解压后的文件夹中有三个文件，其中有一个是exe可执行文件。不要执行它，这不是安装程序。把它的路径配置到环境变量中 配置好环境变量后到命令行窗口输入hugo version查看是否安装成功 现在你可以通过hugo new site YourBlogProjectName命令来创建一个新的站点了 创建好站点后在当前界面执行cd命令进入到你的站点文件夹下，然后执行hugo server命令就可以开启这个站点了。此时访问http://localhost:1313/ 就是你站点的地址，由于是一个全新的站点此时访问是没有任何东西的。 至此，你的hugo以及站点就安装配置完成，下一步就是为你的站点选一个好看的主题，如果你对Blowfish这个主题感兴趣那就继续往下看吧 二、安装Blowfish # 主题地址： https://themes.gohugo.io/themes/blowfish/ Blowfish的作者提供了三种使用该主题的方式，但是我本人比较喜欢作者提供的Hugo Module的方式，以下对该方式展开讲解。
 作者提供的安装文档查看：https://nunocoracao.github.io/blowfish/docs/installation/#install-using-hugo
