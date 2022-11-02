@@ -106,7 +106,7 @@
     "keywords": ["机器学习","线性回归","非线性回归"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1148"
+    "wordCount": "1173"
   }]
   </script>
 
@@ -648,7 +648,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-10-26 22:14:25 &#43;0800 CST">26 October 2022</time><span class="px-2 text-primary-500">&middot;</span><span>1148 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">6 分钟</span>
+  <time datetime="2022-10-26 22:14:25 &#43;0800 CST">26 October 2022</time><span class="px-2 text-primary-500">&middot;</span><span>1173 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">6 分钟</span>
   
 
   
@@ -748,41 +748,40 @@
   >
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#代价函数损失函数cost-function">代价函数（损失函数）（Cost function）</a></li>
+    <li><a href="#一梯度下降">一、梯度下降</a>
       <ul>
-        <li><a href="#代价函数损失函数cost-function">代价函数（损失函数）（Cost function）</a></li>
-        <li><a href="#一梯度下降">一、梯度下降</a>
+        <li><a href="#1用梯度下降法来求解线性回归">1、用梯度下降法来求解线性回归</a>
           <ul>
-            <li><a href="#1用梯度下降法来求解线性回归">1、用梯度下降法来求解线性回归</a></li>
             <li><a href="#实战11-一元线性回归">实战1.1 一元线性回归</a></li>
             <li><a href="#实战12-直接用sklearn库实现记住这个">实战1.2 直接用sklearn库实现：（记住这个）</a></li>
             <li><a href="#多元线性回归">多元线性回归</a></li>
-            <li><a href="#2梯度下降法解决多元线性回归">2、梯度下降法解决多元线性回归</a></li>
-            <li><a href="#3多项式回归">3、多项式回归</a></li>
           </ul>
         </li>
-        <li><a href="#二标准方程法">二、标准方程法</a>
-          <ul>
-            <li><a href="#这里涉及到矩阵求导">这里涉及到矩阵求导</a></li>
-            <li><a href="#梯度下降法和标准方程法的优缺点对比">梯度下降法和标准方程法的优缺点对比</a></li>
-          </ul>
-        </li>
-        <li><a href="#三特征缩放">三、特征缩放</a>
-          <ul>
-            <li><a href="#1数据归一化">1、数据归一化</a></li>
-            <li><a href="#2均值标准化">2、均值标准化</a></li>
-          </ul>
-        </li>
-        <li><a href="#四交叉验证法">四、交叉验证法</a></li>
-        <li><a href="#五过拟合及正则化">五、过拟合及正则化</a>
-          <ul>
-            <li><a href="#防止过拟合的措施">防止过拟合的措施</a></li>
-            <li><a href="#正则化">正则化</a></li>
-          </ul>
-        </li>
-        <li><a href="#六岭回归">六、岭回归</a></li>
+        <li><a href="#2梯度下降法解决多元线性回归">2、梯度下降法解决多元线性回归</a></li>
+        <li><a href="#3多项式回归">3、多项式回归</a></li>
       </ul>
     </li>
+    <li><a href="#二标准方程法">二、标准方程法</a>
+      <ul>
+        <li><a href="#这里涉及到矩阵求导">这里涉及到矩阵求导</a></li>
+        <li><a href="#梯度下降法和标准方程法的优缺点对比">梯度下降法和标准方程法的优缺点对比</a></li>
+      </ul>
+    </li>
+    <li><a href="#三特征缩放">三、特征缩放</a>
+      <ul>
+        <li><a href="#1数据归一化">1、数据归一化</a></li>
+        <li><a href="#2均值标准化">2、均值标准化</a></li>
+      </ul>
+    </li>
+    <li><a href="#四交叉验证法">四、交叉验证法</a></li>
+    <li><a href="#五过拟合及正则化">五、过拟合及正则化</a>
+      <ul>
+        <li><a href="#防止过拟合的措施">防止过拟合的措施</a></li>
+        <li><a href="#正则化">正则化</a></li>
+      </ul>
+    </li>
+    <li><a href="#六岭回归">六、岭回归</a></li>
   </ul>
 </nav>
   </div>
@@ -798,41 +797,40 @@
   >
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#代价函数损失函数cost-function">代价函数（损失函数）（Cost function）</a></li>
+    <li><a href="#一梯度下降">一、梯度下降</a>
       <ul>
-        <li><a href="#代价函数损失函数cost-function">代价函数（损失函数）（Cost function）</a></li>
-        <li><a href="#一梯度下降">一、梯度下降</a>
+        <li><a href="#1用梯度下降法来求解线性回归">1、用梯度下降法来求解线性回归</a>
           <ul>
-            <li><a href="#1用梯度下降法来求解线性回归">1、用梯度下降法来求解线性回归</a></li>
             <li><a href="#实战11-一元线性回归">实战1.1 一元线性回归</a></li>
             <li><a href="#实战12-直接用sklearn库实现记住这个">实战1.2 直接用sklearn库实现：（记住这个）</a></li>
             <li><a href="#多元线性回归">多元线性回归</a></li>
-            <li><a href="#2梯度下降法解决多元线性回归">2、梯度下降法解决多元线性回归</a></li>
-            <li><a href="#3多项式回归">3、多项式回归</a></li>
           </ul>
         </li>
-        <li><a href="#二标准方程法">二、标准方程法</a>
-          <ul>
-            <li><a href="#这里涉及到矩阵求导">这里涉及到矩阵求导</a></li>
-            <li><a href="#梯度下降法和标准方程法的优缺点对比">梯度下降法和标准方程法的优缺点对比</a></li>
-          </ul>
-        </li>
-        <li><a href="#三特征缩放">三、特征缩放</a>
-          <ul>
-            <li><a href="#1数据归一化">1、数据归一化</a></li>
-            <li><a href="#2均值标准化">2、均值标准化</a></li>
-          </ul>
-        </li>
-        <li><a href="#四交叉验证法">四、交叉验证法</a></li>
-        <li><a href="#五过拟合及正则化">五、过拟合及正则化</a>
-          <ul>
-            <li><a href="#防止过拟合的措施">防止过拟合的措施</a></li>
-            <li><a href="#正则化">正则化</a></li>
-          </ul>
-        </li>
-        <li><a href="#六岭回归">六、岭回归</a></li>
+        <li><a href="#2梯度下降法解决多元线性回归">2、梯度下降法解决多元线性回归</a></li>
+        <li><a href="#3多项式回归">3、多项式回归</a></li>
       </ul>
     </li>
+    <li><a href="#二标准方程法">二、标准方程法</a>
+      <ul>
+        <li><a href="#这里涉及到矩阵求导">这里涉及到矩阵求导</a></li>
+        <li><a href="#梯度下降法和标准方程法的优缺点对比">梯度下降法和标准方程法的优缺点对比</a></li>
+      </ul>
+    </li>
+    <li><a href="#三特征缩放">三、特征缩放</a>
+      <ul>
+        <li><a href="#1数据归一化">1、数据归一化</a></li>
+        <li><a href="#2均值标准化">2、均值标准化</a></li>
+      </ul>
+    </li>
+    <li><a href="#四交叉验证法">四、交叉验证法</a></li>
+    <li><a href="#五过拟合及正则化">五、过拟合及正则化</a>
+      <ul>
+        <li><a href="#防止过拟合的措施">防止过拟合的措施</a></li>
+        <li><a href="#正则化">正则化</a></li>
+      </ul>
+    </li>
+    <li><a href="#六岭回归">六、岭回归</a></li>
   </ul>
 </nav>
   </div>
@@ -846,16 +844,17 @@
         <p>
  
 线性还是非线性是要根据分析的目标来决定的，在线性回归和非线性回归中，我们需要求解的是模型参数，因而，线性与非线性描述的是函数模型与模型参数之间的关系，而非因变量与自变量之间的关系</p>
-<h3 id="代价函数损失函数cost-function" class="relative group">代价函数（损失函数）（Cost function） <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%bb%a3%e4%bb%b7%e5%87%bd%e6%95%b0%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0cost-function" aria-label="锚点">#</a></span></h3>
+<h2 id="代价函数损失函数cost-function" class="relative group">代价函数（损失函数）（Cost function） <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%bb%a3%e4%bb%b7%e5%87%bd%e6%95%b0%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0cost-function" aria-label="锚点">#</a></span></h2>
 <ul>
 <li>最小二乘法</li>
-<li>真实值$y$,预测值$h_\theta$,则误差平方为$(y-h_\theta(x))^2$.</li>
-<li>找到合适的参数，使得误差平方和：
-$$
-对于线性的：
-h_\theta(x)=\theta_0+\theta_1x</li>
+<li>真实值\(y\),预测值\(h_\theta\),则误差平方为\((y-h_\theta(x))^2\).</li>
+<li>找到合适的参数，使得误差平方和：</li>
 </ul>
-<p>J(\theta_0,\theta_1)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2
+<p>对于线性的：
+$$
+h_\theta(x)=\theta_0+\theta_1x
+\\
+J(\theta_0,\theta_1)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2
 $$
 最小</p>
 <ul>
@@ -863,30 +862,33 @@ $$
 $$
 r_{xy}=\dfrac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2\sum(Y_i-\overline{Y})^2}}
 $$
-其中$X_i$表示真实值的横坐标；$Y_i$表示真实值纵横坐标；$\overline{X}$表示真实值的横坐标的平均值；$\overline{Y}$表示真实值的纵坐标的平均值。</li>
-<li>相关系数$R^2$是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。</li>
-<li>总平方和（SST）：$\textstyle\sum_{i=1}^n(y_i-\overline{y})^2$</li>
-<li>回归平方和（SSR）：$\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2$</li>
-<li>残差平方和（SSE）：$\textstyle\sum_{i=1}^n(y_i-\hat{y})^2$</li>
-<li>它们三者的关系是：$SST=SSR+SSE$</li>
-<li>决定系数：$R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$</li>
+其中\(X_i\)表示真实值的横坐标；\(Y_i\)表示真实值纵横坐标；\(\overline{X}\)表示真实值的横坐标的平均值；\(\overline{Y}\)表示真实值的纵坐标的平均值。</li>
+<li>相关系数\(R^2\)是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。</li>
+<li>总平方和（SST）：\(\textstyle\sum_{i=1}^n(y_i-\overline{y})^2\)</li>
+<li>回归平方和（SSR）：\(\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2\)</li>
+<li>残差平方和（SSE）：\(\textstyle\sum_{i=1}^n(y_i-\hat{y})^2\)</li>
+<li>它们三者的关系是：\(SST=SSR+SSE\)</li>
+<li>决定系数：\(R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}\)</li>
 </ul>
-<h3 id="一梯度下降" class="relative group">一、梯度下降 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%b8%80%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d" aria-label="锚点">#</a></span></h3>
+<h2 id="一梯度下降" class="relative group">一、梯度下降 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%b8%80%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d" aria-label="锚点">#</a></span></h2>
 <p>需要做一个迭代：
 $$
 \theta_j:=\theta_j-\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1),j=0,1
 $$
-其中$\alpha$为学习率;$:=$为赋值符，将右边赋值给左边</p>
+其中\(\alpha\)为学习率；\(:=\)为赋值符，将右边赋值给左边</p>
 <p>这个迭代公式在更新的时候必须同步更新，即：
 $$
-temp0:=\theta_0-\alpha\dfrac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)</p>
-<p>temp1:=\theta_1-\alpha\dfrac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)</p>
-<p>\theta_0:=temp0</p>
-<p>\theta_1:=temp1
+temp0:=\theta_0-\alpha\dfrac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)
+\\
+temp1:=\theta_1-\alpha\dfrac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)
+\\
+\theta_0:=temp0
+\\
+\theta_1:=temp1
 $$
 学习率不能太小也不能太大。太小计算耗时，太大就会发生震荡。</p>
-<h4 id="1用梯度下降法来求解线性回归" class="relative group">1、用梯度下降法来求解线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e7%94%a8%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e6%9d%a5%e6%b1%82%e8%a7%a3%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
-<p>上面提到的$\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)$`拆开来是这样的：
+<h3 id="1用梯度下降法来求解线性回归" class="relative group">1、用梯度下降法来求解线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e7%94%a8%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e6%9d%a5%e6%b1%82%e8%a7%a3%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h3>
+<p>上面提到的\(\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\)拆开来是这样的：
 $$
 j=0:\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)=\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})
 $$
@@ -896,8 +898,8 @@ $$
 需要注意的是用梯度下降法来求解线性回归，如果函数是凸函数那么最终可以求得全局最优解，但如果函数是非凸函数，那么求得的解就有可能陷入局部最优。</p>
 <h4 id="实战11-一元线性回归" class="relative group">实战1.1 一元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%ae%9e%e6%88%9811-%e4%b8%80%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
 <p><strong>语言</strong>：Python</p>
-<p>一、使用numpy实现**：**</p>
-<p>第三方库**：numpy、matplotlib。</p>
+<p><strong>一、使用numpy实现:</strong></p>
+<p><strong>第三方库</strong>：numpy、matplotlib。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#----------------------上面是导包</span>
@@ -985,18 +987,19 @@ $$
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#-------------------------只画图</span>
 </span></span></code></pre></div><h4 id="多元线性回归" class="relative group">多元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%a4%9a%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
-<p>当<code>$y$</code>的影响因素不是唯一时，采用多元线性回归模型。</p>
+<p>当\(y\)的影响因素不是唯一时，采用多元线性回归模型。</p>
 <p><strong>多特征</strong>
 $$
 h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+\dots+\theta_nx_n
 $$
-那么在这里的话有多少个特征就会有多少个x。</p>
+那么在这里的话有多少个特征就会有多少个\(x\)。</p>
 <p><strong>多元线性回归的梯度下降</strong>
 $$
-\theta_j:=\theta_j-\alpha\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)}) x_j^{(i)}</p>
-<p>(j=0,\dots,n)
+\theta_j:=\theta_j-\alpha\dfrac{1}{m}\displaystyle\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)}) x_j^{(i)}
+\\
+(j=0,\dots,n)
 $$</p>
-<h4 id="2梯度下降法解决多元线性回归" class="relative group">2、梯度下降法解决多元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e8%a7%a3%e5%86%b3%e5%a4%9a%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+<h3 id="2梯度下降法解决多元线性回归" class="relative group">2、梯度下降法解决多元线性回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e8%a7%a3%e5%86%b3%e5%a4%9a%e5%85%83%e7%ba%bf%e6%80%a7%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h3>
 <p><strong>实战2.1：利用numpy使用梯度下降法</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">genfromtxt</span>
@@ -1121,7 +1124,7 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#显示图像  </span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
 </span></span><span class="line"><span class="cl"><span class="c1">#------------------------------画3D图</span>
-</span></span></code></pre></div><h4 id="3多项式回归" class="relative group">3、多项式回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3%e5%a4%9a%e9%a1%b9%e5%bc%8f%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h4>
+</span></span></code></pre></div><h3 id="3多项式回归" class="relative group">3、多项式回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#3%e5%a4%9a%e9%a1%b9%e5%bc%8f%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h3>
 <p>多项式回归，回归函数是回归变量多项式的回归。多项式回归模型是线性回归模型的一种，此时回归函数关于回归系数是线性的。由于任一函数都可以用多项式逼近，因此多项式回归有着广泛应用。
 $$
 y=\theta_0+\theta_1x+\theta_2x+\theta_3x+\dots+\theta_nx
@@ -1167,68 +1170,68 @@ $$
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Salary&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#--------------------------------画出使用多项式回归的结果图</span>
-</span></span></code></pre></div><h3 id="二标准方程法" class="relative group">二、标准方程法 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%ba%8c%e6%a0%87%e5%87%86%e6%96%b9%e7%a8%8b%e6%b3%95" aria-label="锚点">#</a></span></h3>
+</span></span></code></pre></div><h2 id="二标准方程法" class="relative group">二、标准方程法 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%ba%8c%e6%a0%87%e5%87%86%e6%96%b9%e7%a8%8b%e6%b3%95" aria-label="锚点">#</a></span></h2>
 <p>标准方程法就是令式子的代价函数的偏导都等于0时所求得的解向量就是使代价函数最小的解。
 $$
-令\dfrac{\partial}{\partial\theta_j}J(\theta)=\dots=0</p>
-<p>求解:\theta_0,\theta_1,\dots,\theta_n
+令\dfrac{\partial}{\partial\theta_j}J(\theta)=\dots=0
+\\
+求解:\theta_0,\theta_1,\dots,\theta_n
 $$
-我们知道，在梯度下降法中，式子的代价函数为$J(\theta_0,\theta_1,\dots,\theta_n)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2$
-当我们有一组数据，我们把自变量用矩阵<code>$X$</code>表示，自变量用矩阵<code>$y$</code>表示，需要求解的令代价函数等于零的解用矩阵<code>w</code>表示。例如：
+我们知道，在梯度下降法中，式子的代价函数为\(J(\theta_0,\theta_1,\dots,\theta_n)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2\)
+当我们有一组数据，我们把自变量用矩阵\(X\)表示，自变量用矩阵\(y\)表示，需要求解的令代价函数等于零的解用矩阵\(w\)表示。例如：
 $$
-X=\begin{bmatrix}x_{0,0}&amp;x_{0,1}&amp;x_{0,2}&amp;x_{0,3}&amp;x_{0,4}\x_{1,0}&amp;x_{1,1}&amp;x_{1,2}&amp;x_{1,3}&amp;x_{1,4}\x_{2,0}&amp;x_{2,1}&amp;x_{2,2}&amp;x_{2,3}&amp;x_{2,4}\x_{3,0}&amp;x_{3,1}&amp;x_{3,2}&amp;x_{3,3}&amp;x_{3,4}\end{bmatrix} w=\begin{bmatrix}w_0\w_1\w_2\w_3\w_4 \end{bmatrix} y=\begin{bmatrix}y_0\y_1\y_2\y_3\y_4 \end{bmatrix}</p>
-<p>\displaystyle\sum_{i=1}^m(h_w(x^i)-y_i)^2=(y-Xw)^T(y-Xw)
+X=\begin{bmatrix}x_{0,0}&amp;x_{0,1}&amp;x_{0,2}&amp;x_{0,3}&amp;x_{0,4} \\ 
+x_{1,0}&amp;x_{1,1}&amp;x_{1,2}&amp;x_{1,3}&amp;x_{1,4} \\
+x_{2,0}&amp;x_{2,1}&amp;x_{2,2}&amp;x_{2,3}&amp;x_{2,4} \\
+x_{3,0}&amp;x_{3,1}&amp;x_{3,2}&amp;x_{3,3}&amp;x_{3,4}\end{bmatrix}
+\\
+w=\begin{bmatrix}w_0 \\ w_1 \\ w_2 \\ w_3 \\ w_4 \end{bmatrix}
+\\
+y=\begin{bmatrix}y_0 \\ y_1 \\ y_2 \\ y_3 \\ y_4 \end{bmatrix}
+\\
+\displaystyle\sum_{i=1}^m(h_w(x^i)-y_i)^2=(y-Xw)^T(y-Xw)
 $$</p>
-<h4 id="这里涉及到矩阵求导" class="relative group">这里涉及到矩阵求导 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e8%bf%99%e9%87%8c%e6%b6%89%e5%8f%8a%e5%88%b0%e7%9f%a9%e9%98%b5%e6%b1%82%e5%af%bc" aria-label="锚点">#</a></span></h4>
+<h3 id="这里涉及到矩阵求导" class="relative group">这里涉及到矩阵求导 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e8%bf%99%e9%87%8c%e6%b6%89%e5%8f%8a%e5%88%b0%e7%9f%a9%e9%98%b5%e6%b1%82%e5%af%bc" aria-label="锚点">#</a></span></h3>
 <p><strong>分子布局：</strong> 分子为列向量或者分母为行向量</p>
-<p>**分母布局：**分子为行向量或者分母为列向量
+<p><strong>分母布局：</strong> 分子为行向量或者分母为列向量
 $$
 \dfrac{\partial(y-Xw)^T(y-Xw)}{\partial w}
-$$
-$$
+\\
 \dfrac{\partial(y^Ty-y^TXw-w^TX^Ty+w^TX^TXw)}{\partial w}
-$$
-$$
+\\
 \dfrac{\partial y^Ty}{\partial w}-\dfrac{\partial y^TXw}{\partial w}-\dfrac{\partial w^TX^Ty}{\partial w}+\dfrac{\partial w^TX^TXw}{\partial w}
 $$
 <strong>矩阵的求导百度查表</strong></p>
 <p>在这里我们查表后可以求得：
 $$
 \dfrac{\partial y^Ty}{\partial w}=0
-$$
-$$
+\\
 \dfrac{\partial y^TXw}{\partial w}=X^Ty
-$$
-$$
+\\
 \dfrac{\partial w^TX^Ty}{\partial w}=\dfrac{\partial(w^TX^Ty)^T}{\partial w}=\dfrac{\partial y^TXw}{\partial w}=X^Ty
-$$
-$$
+\\
 \dfrac{\partial w^TX^TXw}{\partial w}=2X^TXw
 $$
 那么：
 $$
 \dfrac{\partial y^Ty}{\partial w}-\dfrac{\partial y^TXw}{\partial w}-\dfrac{\partial w^TX^Ty}{\partial w}+\dfrac{\partial w^TX^TXw}{\partial w}=0-X^Ty-X^Ty+2X^TXw
-$$
-$$
+\\
 -2X^Ty+2X^TXw=0
-$$
-$$
+\\
 X^TXw=X^Ty
-$$
-$$
+\\
 (X^TX)^{-1}X^TXw=(X^TX)^{-1}X^Ty
-$$
-$$
+\\
 w=(X^TX)^{-}X^Ty
 $$
 <strong>矩阵不可逆的情况</strong>
 1、线性相关的特征(多重共线性)。
-例如:$x_1$为房子的面积,单位是平方英尺
-$x_2$为房子的面积,单位是平方米
+例如:\(x_1\)为房子的面积,单位是平方英尺
+\(x_2\)为房子的面积,单位是平方米
 预测房价
-1平方英尺$≈0.0929$平方米
+1平方英尺\(≈0.0929\)平方米
 2、特征数据太多(样本数m≤特征数量n )</p>
-<h4 id="梯度下降法和标准方程法的优缺点对比" class="relative group">梯度下降法和标准方程法的优缺点对比 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e5%92%8c%e6%a0%87%e5%87%86%e6%96%b9%e7%a8%8b%e6%b3%95%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9%e5%af%b9%e6%af%94" aria-label="锚点">#</a></span></h4>
+<h3 id="梯度下降法和标准方程法的优缺点对比" class="relative group">梯度下降法和标准方程法的优缺点对比 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e6%b3%95%e5%92%8c%e6%a0%87%e5%87%86%e6%96%b9%e7%a8%8b%e6%b3%95%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9%e5%af%b9%e6%af%94" aria-label="锚点">#</a></span></h3>
 <table>
 <thead>
 <tr>
@@ -1293,35 +1296,46 @@ $x_2$为房子的面积,单位是平方米
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><h3 id="三特征缩放" class="relative group">三、特征缩放 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%b8%89%e7%89%b9%e5%be%81%e7%bc%a9%e6%94%be" aria-label="锚点">#</a></span></h3>
-<p>当数据中的特征的值相差较大时将不利于我们拟合以及作图。例如$x_1=房子的面积（1000000cm^2-2000000cm^2)$
-$x_2=房间的数量（1-5）$</p>
-<h4 id="1数据归一化" class="relative group">1、数据归一化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e6%95%b0%e6%8d%ae%e5%bd%92%e4%b8%80%e5%8c%96" aria-label="锚点">#</a></span></h4>
+</span></span></code></pre></div><h2 id="三特征缩放" class="relative group">三、特征缩放 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%b8%89%e7%89%b9%e5%be%81%e7%bc%a9%e6%94%be" aria-label="锚点">#</a></span></h2>
+<p>当数据中的特征的值相差较大时将不利于我们拟合以及作图。例如\(x_1=房子的面积（1000000cm^2-2000000cm^2)\)
+\(x_2=房间的数量（1-5）\)</p>
+<h3 id="1数据归一化" class="relative group">1、数据归一化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e6%95%b0%e6%8d%ae%e5%bd%92%e4%b8%80%e5%8c%96" aria-label="锚点">#</a></span></h3>
 <p>数据归一化就是把数据的取值范围处为0-1或者-1-1之间
-任意数据转化为0-1之间：$newValue=(oldValue-min)/(max-min)$
-任意数据转化为-1-1之间：$newValue=((oldValue-min)/(max-min)-0.5)*2$</p>
-<h4 id="2均值标准化" class="relative group">2、均值标准化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e5%9d%87%e5%80%bc%e6%a0%87%e5%87%86%e5%8c%96" aria-label="锚点">#</a></span></h4>
-<p>$newValue=(oldValue-u)/s$<br>x为特诊数据，u为数据的平均值，s为数据的方差</p>
-<h3 id="四交叉验证法" class="relative group">四、交叉验证法 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%9b%9b%e4%ba%a4%e5%8f%89%e9%aa%8c%e8%af%81%e6%b3%95" aria-label="锚点">#</a></span></h3>
-<p>当数据中的记录数量本身不是很多时，如果将数据集按原来的方式划分成训练集和测试集时，就会降低我们训练的效果。这时我们可以将数据划分成n等份（一般划分为10份）然后需要循环n次，每一次循环都取不一样的一份为测试机，剩下的全部为训练集，这样每执行一次循环都会得到一个误差值E，那么最后我们所有误差求和后在求平均值就可以得到较好的误差的值$E=\dfrac{1}{n}\displaystyle\sum_{i=1}^nE_i$</p>
-<h3 id="五过拟合及正则化" class="relative group">五、过拟合及正则化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%ba%94%e8%bf%87%e6%8b%9f%e5%90%88%e5%8f%8a%e6%ad%a3%e5%88%99%e5%8c%96" aria-label="锚点">#</a></span></h3>
+任意数据转化为0-1之间：\(newValue=(oldValue-min)/(max-min)\)
+任意数据转化为-1-1之间：\(newValue=((oldValue-min)/(max-min)-0.5)*2\)</p>
+<h3 id="2均值标准化" class="relative group">2、均值标准化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e5%9d%87%e5%80%bc%e6%a0%87%e5%87%86%e5%8c%96" aria-label="锚点">#</a></span></h3>
+<p>\(newValue=(oldValue-u)/s\)<br>x为特诊数据，u为数据的平均值，s为数据的方差</p>
+<h2 id="四交叉验证法" class="relative group">四、交叉验证法 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%9b%9b%e4%ba%a4%e5%8f%89%e9%aa%8c%e8%af%81%e6%b3%95" aria-label="锚点">#</a></span></h2>
+<p>当数据中的记录数量本身不是很多时，如果将数据集按原来的方式划分成训练集和测试集时，就会降低我们训练的效果。这时我们可以将数据划分成n等份（一般划分为10份）然后需要循环n次，每一次循环都取不一样的一份为测试机，剩下的全部为训练集，这样每执行一次循环都会得到一个误差值E，那么最后我们所有误差求和后在求平均值就可以得到较好的误差的值\(E=\dfrac{1}{n}\displaystyle\sum_{i=1}^nE_i\)</p>
+<h2 id="五过拟合及正则化" class="relative group">五、过拟合及正则化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e4%ba%94%e8%bf%87%e6%8b%9f%e5%90%88%e5%8f%8a%e6%ad%a3%e5%88%99%e5%8c%96" aria-label="锚点">#</a></span></h2>
 <p>拟合情况一般可以分为三种：欠拟合、正确拟合和过拟合。
 <strong>欠拟合</strong>：就是拟合程度不够导致模型在训练集和测试集中都表现较差。
 <strong>正确拟合</strong>：模型拟合程度高，在训练集和测试集里的表现都很好
 <strong>过拟合</strong>：模型的拟合程度太极端，导致模型在训练集中的表现非常完美，但是在测试集中往往会出现很多误差</p>
-<h4 id="防止过拟合的措施" class="relative group">防止过拟合的措施 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e9%98%b2%e6%ad%a2%e8%bf%87%e6%8b%9f%e5%90%88%e7%9a%84%e6%8e%aa%e6%96%bd" aria-label="锚点">#</a></span></h4>
+<h3 id="防止过拟合的措施" class="relative group">防止过拟合的措施 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e9%98%b2%e6%ad%a2%e8%bf%87%e6%8b%9f%e5%90%88%e7%9a%84%e6%8e%aa%e6%96%bd" aria-label="锚点">#</a></span></h3>
 <p>1.减少特征
 2.增加数据量
 3.正则化</p>
-<h4 id="正则化" class="relative group">正则化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e6%ad%a3%e5%88%99%e5%8c%96" aria-label="锚点">#</a></span></h4>
-<p>正则化代价函数与普通的代价函数差不多，唯一的不同就是最后会加一项$\lambda\displaystyle\sum_{j=1}^n\theta_j^2$或则$\lambda\displaystyle\sum_{j=1}^n\vert\theta_j\vert$。前者叫L2正则化，后者叫L1正则化。</p>
-<h3 id="六岭回归" class="relative group">六、岭回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%85%ad%e5%b2%ad%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h3>
-<p>在前面标准方程法中求得的权值的表达式是：$w=(X^TX)^{-}X^Ty$。如果数据的特征比样本点还多, 数据特征n,样本个数m，如果n&gt; m,则计算$(X^TX)^{-1}$时会出错。因为$(X^TX)$不是满秩矩阵，所以不可逆。<br>
+<h3 id="正则化" class="relative group">正则化 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e6%ad%a3%e5%88%99%e5%8c%96" aria-label="锚点">#</a></span></h3>
+<p>正则化代价函数与普通的代价函数差不多，唯一的不同就是最后会加一项\(\lambda\displaystyle\sum_{j=1}^n\theta_j^2\)或则\(\lambda\displaystyle\sum_{j=1}^n\vert\theta_j\vert\)。前者叫L2正则化，后者叫L1正则化。</p>
+<h2 id="六岭回归" class="relative group">六、岭回归 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%85%ad%e5%b2%ad%e5%9b%9e%e5%bd%92" aria-label="锚点">#</a></span></h2>
+<p>在前面标准方程法中求得的权值的表达式是：\(w=(X^TX)^{-}X^Ty\)。如果数据的特征比样本点还多, 数据特征n,样本个数m，如果n&gt; m,则计算\((X^TX)^{-1}\)时会出错。因为\((X^TX)\)不是满秩矩阵，所以不可逆。<br>
 为了解决这个问题,统计学家引入了岭回归的概念。
 $$
 w=(X^T+\lambda I)^{-1}X^Ty
 $$
-$\lambda$<code>为岭系数, $I$为单位矩阵(对角线.上全为1 ,其他元素全为0) 岭回归的代价函数是之前谈到的L2正则化。 $$ J(\theta)=\dfrac{1}{2}\displaystyle\sum_{i=1}^n(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{i}^n\theta_i^2 $$ 岭回归最早是用来处理特征数多于样本的情况,现在也 用于在估计中加入偏差,从而得到更好的估计。同时也 可以解决多重共线性的问题。岭回归是一种有偏估计。 **岭回归代价函数：**$J(\theta)=\dfrac{1}{2m}\left[\displaystyle\sum_{i=1}^m(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{j}^n\theta_j^2\right]$ **线性回归标准方程法：**$w=(X^TX)^{-}X^Ty$ **岭回归求解：**$w=(X^T+\lambda I)^{-1}X^Ty$ $\lambda为岭系数$ 在选择$\lambda$</code>的值的时候，需要考查下面两个问题使得:
+\(\lambda\)为岭系数, \(I\)为单位矩阵(对角线.上全为1 ,其他元素全为0)
+岭回归的代价函数是之前谈到的L2正则化。
+$$
+J(\theta)=\dfrac{1}{2}\displaystyle\sum_{i=1}^n(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{i}^n\theta_i^2
+$$
+岭回归最早是用来处理特征数多于样本的情况,现在也
+用于在估计中加入偏差,从而得到更好的估计。同时也
+可以解决多重共线性的问题。岭回归是一种有偏估计。
+<strong>岭回归代价函数：</strong> \(J(\theta)=\dfrac{1}{2m}\left[\displaystyle\sum_{i=1}^m(h_\theta(x_i)-y_i)^2+\lambda\displaystyle\sum_{j}^n\theta_j^2\right]\)
+<strong>线性回归标准方程法：</strong> \(w=(X^TX)^{-}X^Ty\)
+<strong>岭回归求解：</strong> \(w=(X^T+\lambda I)^{-1}X^Ty.\lambda为岭系数\)
+在选择\(\lambda\)的值的时候，需要考查下面两个问题使得:
 1.各回归系数的岭估计基本稳定。
 2.残差平方和增大不太多。</p>
 
