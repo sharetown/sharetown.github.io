@@ -559,8 +559,6 @@
       
       <div class="py-1 prose dark:prose-invert">
         线性还是非线性是要根据分析的目标来决定的，在线性回归和非线性回归中，我们需要求解的是模型参数，因而，线性与非线性描述的是函数模型与模型参数之间的关系，而非因变量与自变量之间的关系
-代价函数（损失函数）（Cost function） # 最小二乘法 真实值$y$,预测值$h_\theta$,则误差平方为$(y-h_\theta(x))^2$. 找到合适的参数，使得误差平方和： $$ 对于线性的： h_\theta(x)=\theta_0+\theta_1x J(\theta_0,\theta_1)=\dfrac{1}{2m}\textstyle\sum_{i=1}^m(y^i-h_\theta(x^j))^2 $$ 最小
-我们使用相关系数去衡量线性相关的强弱： $$ r_{xy}=\dfrac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2\sum(Y_i-\overline{Y})^2}} $$ 其中$X_i$表示真实值的横坐标；$Y_i$表示真实值纵横坐标；$\overline{X}$表示真实值的横坐标的平均值；$\overline{Y}$表示真实值的纵坐标的平均值。 相关系数$R^2$是用来描述两个变量之间的线性关系的，但决定系数的适用范围更广, 可以用于描述非线性或者有个及两个以上自变量的相关关系。它可以用来评价模型的效果。 总平方和（SST）：$\textstyle\sum_{i=1}^n(y_i-\overline{y})^2$ 回归平方和（SSR）：$\textstyle\sum_{i=1}^n(\hat{y}-\overline{y})^2$ 残差平方和（SSE）：$\textstyle\sum_{i=1}^n(y_i-\hat{y})^2$ 它们三者的关系是：$SST=SSR+SSE$ 决定系数：$R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$ 一、梯度下降 # 需要做一个迭代： $$ \theta_j:=\theta_j-\alpha\dfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1),j=0,1 $$ 其中$\alpha$为学习率;$:=$为赋值符，将右边赋值给左边
       </div>
       
     </div>
