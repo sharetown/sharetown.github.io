@@ -106,7 +106,7 @@
     "keywords": ["Hugo","Blowfish","Markdown"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "118"
+    "wordCount": "127"
   }]
   </script>
 
@@ -512,7 +512,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-10-25 21:25:00 &#43;0800 CST">25 October 2022</time><span class="px-2 text-primary-500">&middot;</span><span>118 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+  <time datetime="2022-10-25 21:25:00 &#43;0800 CST">25 October 2022</time><span class="px-2 text-primary-500">&middot;</span><span>127 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
   
 
   
@@ -624,7 +624,12 @@
             <li><a href="#4其他更多参数配置">4、其他更多参数配置</a></li>
           </ul>
         </li>
-        <li><a href="#四发布文章">四、发布文章</a></li>
+        <li><a href="#四发布文章">四、发布文章</a>
+          <ul>
+            <li><a href="#1文章格式">1、文章格式</a></li>
+            <li><a href="#2发布到github">2、发布到github</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -654,7 +659,12 @@
             <li><a href="#4其他更多参数配置">4、其他更多参数配置</a></li>
           </ul>
         </li>
-        <li><a href="#四发布文章">四、发布文章</a></li>
+        <li><a href="#四发布文章">四、发布文章</a>
+          <ul>
+            <li><a href="#1文章格式">1、文章格式</a></li>
+            <li><a href="#2发布到github">2、发布到github</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -879,6 +889,7 @@ path = &#34;github.com/nunocoracao/blowfish/v2&#34;
     https://nunocoracao.github.io/blowfish/docs/configuration/
 </a></a></p>
 <h3 id="四发布文章" class="relative group">四、发布文章 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#%e5%9b%9b%e5%8f%91%e5%b8%83%e6%96%87%e7%ab%a0" aria-label="锚点">#</a></span></h3>
+<h4 id="1文章格式" class="relative group">1、文章格式 <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#1%e6%96%87%e7%ab%a0%e6%a0%bc%e5%bc%8f" aria-label="锚点">#</a></span></h4>
 <ul>
 <li>假如你菜单配置的Posts指向的是<code>posts</code>，那么你需要在content文件夹下再创建一个posts文件夹。</li>
 <li>每个文章还需要创建单独的文件夹，用来存放markdown文件和图片等静态资源，加入你开启了文章缩略图，那么每个文章的markdown文件命名就都得是<code>index.md</code>而对应的缩略图呢就得在同一目录下命名为<code>featured.png</code>或<code>featured.jpg</code>。像这样：</li>
@@ -906,6 +917,75 @@ tags:
 - 标签3
 ---
 </code></pre><p><code>date: 2022-10-25T21:25:00+08:00</code>时间格式不要搞错</p>
+<h4 id="2发布到github" class="relative group">2、发布到github <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#2%e5%8f%91%e5%b8%83%e5%88%b0github" aria-label="锚点">#</a></span></h4>
+<ul>
+<li>
+<p>博客项目打包：博客目录下执行<code>hugo -D</code>命令，此时可以发现<code>public</code>目录下多了很多东西
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+      <figure>
+        <img class="my-0 rounded-md" src="QQ%E6%88%AA%E5%9B%BE20221102204823.png" alt="QQ截图20221102204823" />
+        
+      </figure>
+    
+  
+
+</p>
+</li>
+<li>
+<p>创建一个以<code>.github.io</code>为后缀的github仓库
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+      <figure>
+        <img class="my-0 rounded-md" src="QQ%E6%88%AA%E5%9B%BE20221102204943.png" alt="QQQ截图20221102204943" />
+        
+      </figure>
+    
+  
+
+</p>
+</li>
+<li>
+<p>将public目录下的内容提交到这个新的<code>.github.io</code>仓库</p>
+</li>
+<li>
+<p>访问<code>https://仓库名.github.io/</code>
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+      <figure>
+        <img class="my-0 rounded-md" src="QQ%E6%88%AA%E5%9B%BE20221102205112.png" alt="QQ截图20221102205112" />
+        
+      </figure>
+    
+  
+
+</p>
+</li>
+</ul>
 
       </div>
       <script>
