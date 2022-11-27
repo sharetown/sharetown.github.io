@@ -191,4 +191,44 @@
           </url>
     
   
+    
+      <url>
+            <loc>https://sharetown.github.io/posts/go%E8%AF%AD%E8%A8%80%E8%B5%84%E6%BA%90%E5%90%88%E9%9B%86/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://sharetown.github.io/categories/golang/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://sharetown.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://sharetown.github.io/tags/%E8%AF%AD%E8%A8%80/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://sharetown.github.io/tags/%E8%B5%84%E6%BA%90/</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.5</priority>
+          </url>
+    
+  
 </urlset>
